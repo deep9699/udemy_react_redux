@@ -1,0 +1,87 @@
+#index.js:
+It includes 3 things 
+1)import react and reactDOM
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+2)create react component
+const App = ()=>{
+    return <div>Hi there!</div>
+}
+
+
+3)Take the react component and show it on the screen
+ReactDOM.render(<App/>,document.querySelector("#root"))
+where root is and div tag inside body in index.html
+
+#JSX:
+
+->JSX is not HTML.
+->Bebel converts JSX into simple JS.
+
+
+Difference in HTMl & JSX
+1)Style 
+
+html :
+<button style="background-color:blue;color:white">Submit</button
+
+JSX : 
+<button style={{backgroundColor:'blue',color:'white'}}>Submit</button>
+
+
+2)use className instead of class
+
+html :
+<label class="label" for="name">Enter Your Name</label>
+
+JSX :
+<label className="label" for="name">Enter Your Name</label>
+
+
+3)use {} to print any js variable in JSX
+
+=>const buttonText="Click Me"
+
+<button style={{backgroundColor:'blue',color:'white'}}>{buttonText}</button>
+
+
+=>function call :
+function getButtonText()
+{
+    return "Click Me"
+}
+
+<button style={{backgroundColor:'blue',color:'white'}}>{getButtonText()}</button>
+
+=>All other things are allowed inside {} except JS objects.
+
+//NOT ALLOWED
+const buttonText={
+	text:"click me"
+}
+
+<button style={{backgroundColor:'blue',color:'white'}}>{buttonText}</button>
+
+//ALLOWED
+
+<button style={{backgroundColor:'blue',color:'white'}}>{buttonText.text}</button>
+
+4)user htmlFor instead of for
+
+
+
+#Three tenets of components
+
+1)component Nesting:
+	-component can be shown inside  of another
+
+2)component Resuability
+	-want to make component that can be reusable
+	
+3)component Configuration
+	-should be able to configure a component when it is created.
+	
+#Props :
+
+->Props is a system to pass data from parent component to childe component
