@@ -85,3 +85,140 @@ const buttonText={
 #Props :
 
 ->Props is a system to pass data from parent component to childe component
+->We can pass multiple props
+->we can pass an component in props which can be access as props.children.
+
+           <ApprovalCard>
+               {/* props.children in ApprovalCard */}
+
+           <CommentDetail author="Deep" timeAgo="Today at 4:45PM" comment="Nice Blog!" image={Faker.image.image()}></CommentDetail>
+
+           </ApprovalCard>
+
+#Components :
+
+=>class Components vs function Components
+
+->earlier we can only render JSX inside functional Components but using HOOKS we can also do everything that class component can in functional component
+
+
+
+=>CLASS COMPONENT:	
+
+->Rules 
+1)Must be JS class
+2)Must extend subclass React.component
+3)Must define render method which return JSX.
+
+#State :
+
+->Rules:
+1)It is only used with Classes
+2)Do not confuse between props and state
+3)'State' is JS object which contains data relevant to component
+4)updating value of State causes to component to instantly rerender.
+5)State must be initialized when a component is created
+6)State can be only updating using 'setState' method.
+
+->We never use direct assignment with the state property.
+
+
+#Component Life Cycle 
+
+->Constructor
+->render
+-content visible on screen
+->componentDidMount (one time when component did mount)
+-sit and wait for updates (update means state change)
+->componentDidUpdate (when state updates / called just after component rerender)
+-sit and wait until this component	is not longer shown
+->componentWillUnmount
+
+
+#why lifecycle methods 
+
+->Constructor :
+	Good place to do one time setup 
+
+->render :
+	return JSX 
+	
+->componentDidMount :
+	Good place for data loading (API call)
+	
+->componentDidUpdate :
+	Good place for data loading when state/props are changed.
+	
+->componentWillUnmount :
+	Good place to clean up
+	
+#Ways to initialized State
+
+1)Using constructor
+
+    constructor(props){
+        super(props);
+        this.state={
+            lat:null,
+            errorMessage:''
+        };
+        
+    }
+
+2)Alternate way (Bebel converts it and put it inside contructor)
+
+this.state= { lat:null ,errorMessage:'' }
+
+#defaultProps :
+
+->In functional component we can set defaultProps as 
+
+Spinner.defaultProps={
+    message:"Loading..."
+}
+
+
+#EventHandling
+
+=> 2 ways to do that 
+
+1)
+
+
+onInputChange(event){
+        console.log(event.target.value);
+    }
+
+<input className="field" type="text" onChange={this.onInputChange} />
+
+2)
+<input className="field" type="text" onChange={(event)=>console.log(event.target.value)} />
+
+
+
+#Controlled v/s Uncontrolled component
+
+1)Uncontrolled :
+
+
+onInputChange(event){
+        console.log(event.target.value);
+    }
+
+<input className="field" type="text" onChange={this.onInputChange} />
+
+
+=>In which in any point or any state of time if we want to know the value of the input box then we are suppose to go to the HTML DOM and get it from value attribute.
+
+2)Controlled :
+
+state={term:''}
+
+ <input className="field" type="text" value={this.state.term} onChange={(e)=>this.setState({term:e.target.value})} />
+
+=>In which in any point or any state of time if we want to know the value of the input box then we can easily get it from the state of the React.
+->even we go to the HTML DOM to get the value it also returns the state's value.
+
+->certain task are so easy with the Controlled component like to have default value , then only accpet Capital letters etc.
+
+
