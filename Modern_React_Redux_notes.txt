@@ -222,3 +222,74 @@ state={term:''}
 ->certain task are so easy with the Controlled component like to have default value , then only accpet Capital letters etc.
 
 
+#Input onSubmit/onChange function call Error : cannot read property State of undefined
+
+
+solution 1:
+
+inside constructor bind this with the function call
+
+e.g.
+
+constructor(props)
+{
+	super(props);
+	this.onFormSubmit=this.onFormSubmit.bind(this);
+}
+
+solution 2:
+
+replace normal Function into Arrow function as Arrow function as functionality to bind everything inside the function
+
+onFormSubmit=(event)=>{
+        event.preventDefault();
+
+        console.log(this.state.term);
+    }
+	
+solution 3:
+
+replace onSubmit/onChange event with the callback arrow function.
+
+<form onSubmit={(e)=>{this.onFormSubmit(e)}} className="ui form">
+
+
+#Fetch Records:
+
+->React is not responsible for call REST calls.
+
+Fot the same we can use any 3rd party API or any fetch which is already inside modern browsers.
+
+
+=>there are 2 ways to fetch the reponse from the axios
+
+1 : using .then method
+
+ axios.get("https://api.unsplash.com/search/photos",{
+            params:{ query:term },
+            headers:{
+                Authorization: 'Client-ID IkOFLUtmY4O9CwyxYAwni69q875KasR9sFG1v92o5mE'
+            }
+        }).then((Response)=>{
+            console.log(Response.data.results);
+        })
+		
+		
+2: async await
+
+async onSearchSubmit(term){
+       const response = await axios.get("https://api.unsplash.com/search/photos",{
+            params:{ query:term },
+            headers:{
+                Authorization: 'Client-ID IkOFLUtmY4O9CwyxYAwni69q875KasR9sFG1v92o5mE'
+            }
+        })
+        
+        console.log(response.data.results);
+    }
+	
+#React Refs
+
+->Gives access direct to single DOM element.
+
+for that call React.createRef() method which will return the DOM element.
