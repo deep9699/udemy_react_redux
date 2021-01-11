@@ -293,3 +293,71 @@ async onSearchSubmit(term){
 ->Gives access direct to single DOM element.
 
 for that call React.createRef() method which will return the DOM element.
+
+
+#React.Fragment 
+
+->we can use it instead of div 
+
+#Hooks :
+
+->useState : Function that lets you use state inside functional component.
+
+e.g :  
+	const [activeIndex,setActiveIndex] = useState(null);
+    setActiveIndex(5);
+
+where :
+activeIndex is a state property.
+
+setActiveIndex is used for update the state value.
+
+null is the default value of the activeIndex.
+
+
+->useEffect :  Function that lets you use something like a lifecycle methods inside functional component.
+
+- There are 3 ways to configure the hook to run some code automatically in one of the three scenarios.
+1 -when component render for the first time
+e.g useEffect(()=>{console.log('from useEffect')},[]);
+
+2 -when component render for the first time and whenever it renders
+e.g useEffect(()=>{console.log('from useEffect')});
+
+3 -when component render for the first time and (whenever it renders and some piece of data has changed.)
+useEffect(()=>{console.log('from useEffect')},[term]);
+
+
+* we cannot direclty use asyc await inside the useEffect function .For that we have following 3 solutions
+
+1 - With temp variable (Recommanded).
+
+    useEffect(()=>{
+        const search=async()=>{
+            await axios.get("url");
+        }
+
+        search();
+    },[term]);
+	
+2 - Withour temp variables.
+
+
+    useEffect(()=>{
+        (async()=>{
+            await axios.get("url");
+        })();
+
+    },[term]);
+	
+3 - Promise
+
+
+    useEffect(()=>{
+        axios.get("url")
+        .then((response)=>{
+            console.log(response)
+        })
+    },[term]);
+
+->useRef : Function that lets you create a 'ref' in a functional component.
