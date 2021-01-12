@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import Convert from './Convert';
 import Dropdown from './Dropdown'
 
 
@@ -25,10 +26,17 @@ function Translate() {
 
     return (
         <div>
-
-            <input value={text} onChange={()=>{}} />
+            <div className="ui form">
+                <div className="field">
+                    <label>Enter English</label>
+                    <input value={text} onChange={(e)=>{setText(e.target.value)}} />
+                </div>
+            </div>
 
           <Dropdown item="Language" selected={selected} onSelectChange={setSelected} options={options}></Dropdown>
+
+            <h3 className="ui header">Output</h3>
+          <Convert language={selected} text={text}></Convert>
         </div>
     )
 }

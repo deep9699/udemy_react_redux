@@ -3,6 +3,8 @@ import Accordion from "./components/Accordion"
 import Dropdown from "./components/Dropdown"
 import Search from "./components/Search"
 import Translate from "./components/Translate"
+import Route from "./components/Route";
+import Header from "./components/Header"
 
 const items=[
     {
@@ -46,22 +48,19 @@ const App=()=>{
 
     return (
     <div>
-        {/* <Accordion items={items}></Accordion> */}
-        {/* <Search></Search> */}
-        {/* <button onClick={()=>setShowDropdown(!showDropdown)}>Toggle Dropdown</button>
-        {
-           showDropdown ? {
-        <Dropdown item="color" selected={selected} onSelectChange={setSelected} options={options}></Dropdown>
-          <span style={{color:`${selected.value}`}}>The text is {selected.value}!</span>
-           }
-        :
-        null
-        } */}
-
+        <Header></Header>
+      <Route path="/">
+          <Accordion items={items}></Accordion>
+      </Route>
+      <Route path="/list">
+        <Search></Search>
+      </Route>
+      <Route path="/dropdown">
+        <Dropdown options={options} selected={selected} onSelectChange={setSelected} item="color"></Dropdown>
+      </Route>
+    <Route path="/translate">
         <Translate></Translate>
-
-
-
+    </Route>
     </div>
     );
 }

@@ -27,7 +27,7 @@ function Dropdown({options,selected,onSelectChange,item}) {
     },[])
 
     const renderOptions=options.map((option)=>{
-        if(selected.value!=option.value){
+        if(selected.value!==option.value){
         return (
             <div onClick={()=>onSelectChange(option)} key={option.value} className="item">
                 {option.label}
@@ -58,7 +58,7 @@ function Dropdown({options,selected,onSelectChange,item}) {
                     </div>
                 </div>
             </div>
-  
+    <span style={{color:`${selected.value}`}}>This text is {selected.value}</span>
         </div>
         
     )
