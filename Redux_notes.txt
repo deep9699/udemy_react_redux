@@ -1,0 +1,47 @@
+#Redux : 
+
+
+Steps :
+
+->Create Action Creators which will return actions.
+
+->Create reducers 
+	-import {combineReducers} from "redux";
+
+	-Combine the reducers and export them 
+		export default combineReducers({
+			songs:songsReducer,
+			selectedSong:selectedSongReducer
+		})
+
+->Import Provider,createStore inside index.js and wrap App inside provider and pass createStore(reducers) to the provider.
+
+
+	import {Provider} from "react-redux"
+	import {createStore} from "redux"
+	
+	
+	<Provider store={createStore(reducers)}>
+		<App />
+	</Provider>
+	
+->Import connect inside component where we want to use the reducers and actions (states).
+
+		import { connect } from "react-redux";
+		
+	-create mapStateToProp function and wrap with connect function .
+	
+		const mapStateToProps=(state)=>{
+			console.log(state);
+			return {selectedSong:state.selectedSong}
+		}
+
+		export default connect(mapStateToProps)(SongDetail);
+		
+	-If also want to use action then import action and pass as object in second argument of connect.
+	
+		import {selectSong} from "../actions";
+	
+		export default connect(mapStateToProps,{selectSong})(Songlist);
+
+->console.log(props) you get all the state and function from that.

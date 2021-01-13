@@ -371,4 +371,96 @@ e.g
 	
 #React Router:
 
+->React Router has frequent breaking changes.
+
+#Custom Hooks :
+->Best way to create reusable code in React Project.
+
+
+
+#Redux : 
+
+->Redux is state management library.
+->make complex app easier
+
+=>Redux cycle : 
+	->Action Creator -> Action -> Dispatch -> Reducers -> State.
+	
+
+-> Action Creator & Action
+
+
+//Action_Creator
+const createPolicy = (name,amount)=>{
+  //Action
+  return {
+    type:'CREATE_POLICY',
+    payload:{
+      name:name,
+      amount:amount
+    }
+  }
+}
+
+const createClaim = (name,amountOfMoneyToCollect)=>{
+  return {
+    type:'CREATE_CLAIM',
+    payload:{
+      name:name,
+      amountOfMoneyToCollect:amountOfMoneyToCollect
+    }
+  }
+}
+
+const deletePolicy = (name)=>{
+  return {
+    type:'DELETE_POLICY',
+    payload:{
+      name:name
+    }
+  }
+}
+
+- Almost all the action creators and action are identicle there will be a bit of change otherwise all the action creator and actions are almost same.
+
+
+->Reducer 
+
+
+const cliamHistory = (oldListOfCliams = [],actions) =>{
+  if(action.type==="CREATE_CLAIM"){
+    
+    return [...oldListOfCliams,actions.payload];
+  }
+  return oldListOfClaims;
+}
+
+const accounting = (bagOfMoney=100,action)=>{
+  if(action.type==="CREATE_CLAIM"){
+    return bagOfMoney-action.payload.amountOfMoneyToCollect;
+  }
+  else if(action.type==="CREATE_POLICY"){
+    return bagOfMoney+action.payload.amountOfMoneyToCollect;
+  }
+  return bagOfMoney;
+}
+
+
+const policies = (listOfPolicies = [],action)=>{
+  if(action.type="CREATE_POLICY")
+    {
+      return [...listOfPolicies,action.payload.name];
+    }
+  else if(action.type=="DELETE_POLICY")
+    {
+      return listOfPolicies.filter(name=>name!==action.payload.name);
+    }
+  return listOfPolicies
+}
+
+- Reducer is just pure JS function which accept oldList and action and return the newList.
+
+- When the Reducer first time called it has no oldList so it will become undefined so we are suppose to give it the default value.
+
+- In Reducer you are suppose to return the new array. So never modify the old array just create a new array and return them.
 	
