@@ -463,4 +463,15 @@ const policies = (listOfPolicies = [],action)=>{
 - When the Reducer first time called it has no oldList so it will become undefined so we are suppose to give it the default value.
 
 - In Reducer you are suppose to return the new array. So never modify the old array just create a new array and return them.
+
+
+#Reducer Rules :
+
+->Must return any value besides the 'undefined'
+
+->Produce state or data to be used inside your app using only previous state and actions.
+
+->Must not return reach out of itself to decide what value to return.
+
+->Must not mutate its input 'state' argument.
 	
