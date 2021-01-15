@@ -1,0 +1,129 @@
+#Redux Form
+
+=>install redux form
+	npm install --save redux-form
+
+=>import reducer from the redux-form and add it in combine reducer.
+
+	import { reducer as formReducer } from "redux-form";
+
+	export default combineReducers({
+		auth:authReducer,
+		form:formReducer
+	})
+
+=>import Field and reduxform from the "redux-form"
+
+	import {Field,reduxForm} from "redux-form"
+
+=>wrap component with the reduxForm while export default.
+
+	export default reduxForm({
+		form:'streamCreate'
+	})(StreamCreate)
+
+
+=>Add Field inside form and assign it name and component (component can be reacr component or function).
+
+	<form>
+				 <Field name="title" component={this.renderInput} />
+				 <Field name="description" component={this.renderInput}/>
+	</form>
+
+=>Handle the things inside the component.
+
+    renderInput(formProps){
+        console.log(formProps);
+        //return <input onChange={formProps.input.onChange} value={formProps.input.value} />
+        return <input {...formProps.input} />
+    }
+
+
+* Submit the Form 
+=>Use handleSubmit property of the props and pass your function handler in it and it will pass all the value of the form inputs.
+
+	onSubmit(formValues)
+    {
+        console.log(formValues);
+    }
+	
+	
+	<form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
+             <Field name="title" component={this.renderInput} label="Enter Title" />
+             <Field name="description" component={this.renderInput} label="Enter Description"/>
+             <button className="ui button primary">Submit</button>
+    </form>
+	
+* Validate the Form
+=>First Create a validate handler for validate the function.
+
+	const validate=(formValues)=>{
+		const error={}
+		if(!formValues.title)
+		{
+			error.title="You must enter Title"
+		}
+		if(!formValues.description)
+		{
+			error.description="You must enter Description"
+		}
+
+		return error;
+	}
+
+	-It is outside the class component and before the export default.
+	-If it return the empty object than it means there is no Error.
+	-If it return object with an key value pair it means there is some error inside form.
+	-Only connection between form inputs and error message is that return object's key must be same name as Field's name.
+
+=>Add validate handler in reduxForm in export default.
+
+	export default reduxForm({
+		form:'streamCreate',
+		validate:validate
+	})(StreamCreate)
+
+=>We will get thirs argument meta inside out renderInput and it contains error message, touched etc... property .
+
+
+	renderError(meta){
+		//As we want error message only when there user touched the input and remain it blank.
+        if(meta.error && meta.touched)
+        {
+            return (
+                <div className="ui error message">
+                    <div className="header">
+                        {meta.error}
+                    </div>
+                </div>
+            )
+        }
+    }
+
+    renderInput=({input,label,meta})=>{
+        
+        
+        //return <input onChange={formProps.input.onChange} value={formProps.input.value} />
+        const className=`field ${meta.error && meta.touched ? 'error' : ''}`
+        return (
+            <div className={className}>
+                <label>{label}</label>
+                <input {...input} autoComplete="off" />
+                {this.renderError(meta)}
+            </div>
+        )
+    }
+	
+=>Add "error" className inside error to make error visible because bydefault form has display:none Error in symentic UI.
+
+
+	render() {
+      //  console.log(this.props)
+        return (
+         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
+             <Field name="title" component={this.renderInput} label="Enter Title" />
+             <Field name="description" component={this.renderInput} label="Enter Description"/>
+             <button className="ui button primary">Submit</button>
+         </form>
+        )
+    }
