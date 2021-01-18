@@ -1,0 +1,49 @@
+//Action Creator
+const IncrementCount=()=>{
+  //Action
+  return {
+    type:"INCREMENT"
+  }
+}
+
+const DecementCount=()=>{
+  return {
+    type:"DECEREMENT"
+  }
+}
+
+const InitialState={
+  count:0
+}
+//Reducer
+const CountReducer=(oldState=InitialState,action)=>{
+ if(action.type=="INCREMENT")
+   {
+     return {
+       count:oldState.count+1
+     };
+   }
+  else if(action.type=="DECEREMENT")
+    {
+      return {
+        count:oldState.count-1
+      };
+    }
+  else
+    {
+      return oldState;
+    }
+}
+
+const { createStore } = Redux;
+
+
+const store=createStore(CountReducer);
+
+console.log(store.getState());
+store.dispatch(IncrementCount());
+console.log(store.getState());
+store.dispatch(IncrementCount());
+console.log(store.getState());
+store.dispatch(DecementCount());
+console.log(store.getState());

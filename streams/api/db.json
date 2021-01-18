@@ -1,0 +1,26 @@
+{
+  "streams": [
+    {
+      "title": "MyStream",
+      "description": "Great Stream!",
+      "id": 1
+    },
+    {
+      "title": "Other Stream",
+      "description": "Other Copy Stream",
+      "id": 2
+    },
+    {
+      "title": "i created Stream",
+      "description": "Stream by vidhi",
+      "userId": "100144500493615691628",
+      "id": 4
+    },
+    {
+      "title": "Using reusable Form",
+      "description": "Reusable Form by vidhi Shah",
+      "userId": "100144500493615691628",
+      "id": 5
+    }
+  ]
+}
