@@ -1,5 +1,5 @@
 import React from 'react'
-import {BrowserRouter,Route,Link, HashRouter, MemoryRouter,Router} from "react-router-dom";
+import {BrowserRouter,Route,Link, HashRouter, MemoryRouter,Router, Switch} from "react-router-dom";
 import StreamShow from "./Streams/StreamShow";
 import StreamList from "./Streams/StreamList";
 import StreamCreate from "./Streams/StreamCreate";
@@ -14,12 +14,15 @@ const App=()=>{
             
             <Router history={history}>
                 <div>
-                    <Header />        
-                    <Route path="/" exact component={StreamList} />
-                    <Route path="/streams/show" component={StreamShow} />
-                    <Route path="/streams/new" component={StreamCreate} />
-                    <Route path="/streams/edit/:id" component={StreamEdit} />
-                    <Route path="/streams/delete" component={StreamDelete} />
+                   
+                        <Header />      
+                        <Switch>
+                        <Route path="/" exact component={StreamList} />
+                        <Route path="/streams/new" exact component={StreamCreate} />
+                        <Route path="/streams/:id" exact component={StreamShow} />
+                        <Route path="/streams/edit/:id" exact component={StreamEdit} />
+                        <Route path="/streams/delete/:id" exact component={StreamDelete} />
+                        </Switch>  
                 </div>
             </Router>
 

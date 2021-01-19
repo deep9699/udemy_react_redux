@@ -474,4 +474,7 @@ const policies = (listOfPolicies = [],action)=>{
 ->Must not return reach out of itself to decide what value to return.
 
 ->Must not mutate its input 'state' argument.
+
+
+#Context :
 	
