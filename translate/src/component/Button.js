@@ -14,7 +14,7 @@ class Button extends Component {
     renderButton=(color)=>{
         return (
             <button className={`ui button ${color}`}>
-                <LanguageContext.Consumer>{(value)=>this.renderSubmit(value)}</LanguageContext.Consumer>
+                <LanguageContext.Consumer>{(value)=>this.renderSubmit(value.language)}</LanguageContext.Consumer>
             </button>
         )
     }
